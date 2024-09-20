@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build with clang++",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-std=c++17",
+                "-stdlib=libc++",
+                "-g",
+                "${fileDirname}/*.cpp",  // Compile all .cpp files in the directory of the currently open file
+                "${workspaceFolder}/Components/*.cpp",      // All cpp files in the Components subdirectory
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",  // Output executable in the same directory
+                "-I/opt/homebrew/Cellar/sdl2/2.30.6/include/SDL2",
+                "-I/opt/homebrew/Cellar/sdl2_image/2.8.2_1/include/SDL2",
+                "-L/opt/homebrew/Cellar/sdl2/2.30.6/lib",
+                "-L/opt/homebrew/Cellar/sdl2_image/2.8.2_1/lib",
+                "-lSDL2",
+                "-lSDL2_image"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"  // Sets the current working directory to that of the file
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
